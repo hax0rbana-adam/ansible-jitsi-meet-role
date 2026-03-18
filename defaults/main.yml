@@ -54,7 +54,7 @@ jitsi_config:
   # preferH264: true
   # disableH264: false
   desktopSharingChromeExtId: null
-  desktopSharingChromeSources: [ 'screen', 'window', 'tab' ]
+  desktopSharingChromeSources: ['screen', 'window', 'tab']
   desktopSharingChromeMinExtVersion: '0.1'
   # desktopSharingChromeDisabled: false
   # desktopSharingFirefoxDisabled: false

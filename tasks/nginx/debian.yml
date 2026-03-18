@@ -1,5 +1,5 @@
 - name: Install nginx
-  apt:
+  ansible.builtin.apt:
     name: nginx # for web traffic and certbot
     state: present
-    update_cache: yes
+    update_cache: true

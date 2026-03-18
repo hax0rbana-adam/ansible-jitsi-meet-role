@@ -1,6 +1,7 @@
 - name: "Override jitsi config.js"
-  template:
+  ansible.builtin.template:
     src: config.js.j2
-    backup: yes
-    force: yes
+    backup: true
+    force: true
     dest: /etc/jitsi/meet/{{ jitsi_domain }}-config.js
+    mode: "644"

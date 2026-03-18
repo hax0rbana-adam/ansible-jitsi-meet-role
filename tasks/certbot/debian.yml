@@ -1,16 +1,17 @@
 - name: Update vhost
-  template:
+  ansible.builtin.template:
     src: nginx-vhost.conf.j2
     dest: /etc/nginx/sites-available/{{ jitsi_domain }}.conf
+    mode: "644"
   notify:
-    - restart_nginx
-- when: nginx_modify_server_names_hash_bucket_size|bool
-  name: Ensure server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }}
-  lineinfile:
+    - Restart nginx
+- name: Ensure server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }}
+  when: nginx_modify_server_names_hash_bucket_size|bool
+  ansible.builtin.lineinfile:
     line: \1server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }};
     regexp: (\s*)#?\s*server_names_hash_bucket_size \d+;
     path: /etc/nginx/nginx.conf
     validate: nginx -t -c %s
-    backrefs: yes
+    backrefs: true
   notify:
-    - restart_nginx
+    - Restart nginx

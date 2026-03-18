@@ -1,24 +1,24 @@
-- when: ansible_distribution|lower == 'ubuntu'
-  name: Enable Universe
-  import_tasks: pkgs/ubuntu.yml
+- name: Enable Universe
+  when: ansible_distribution|lower == 'ubuntu'
+  ansible.builtin.import_tasks: pkgs/ubuntu.yml
 
-- when: ansible_os_family|lower == 'debian'
-  name: Install nginx
-  import_tasks: nginx/debian.yml
+- name: Install nginx
+  when: ansible_os_family|lower == 'debian'
+  ansible.builtin.import_tasks: nginx/debian.yml
 
-- when: certbot_enabled|bool
-  name: Get TLS Certificate
-  include_role:
+- name: Get TLS Certificate
+  when: certbot_enabled|bool
+  ansible.builtin.include_role:
     name: geerlingguy.certbot
 
-- when: ansible_os_family|lower == 'debian'
-  name: Install Jitsi
-  import_tasks: jitsi/debian.yml
+- name: Install Jitsi
+  when: ansible_os_family|lower == 'debian'
+  ansible.builtin.import_tasks: jitsi/debian.yml
 
-- when: managed_jitsi_config|bool
-  name: Configure Jitsi
-  import_tasks: jitsi/config.yml
+- name: Configure Jitsi
+  when: managed_jitsi_config|bool
+  ansible.builtin.import_tasks: jitsi/config.yml
 
-- when: (certbot_enabled|bool) and (ansible_os_family|lower == 'debian')
-  name: Update nginx configuration for Certbot
-  import_tasks: certbot/debian.yml
+- name: Update nginx configuration for Certbot
+  when: (certbot_enabled|bool) and (ansible_os_family|lower == 'debian')
+  ansible.builtin.import_tasks: certbot/debian.yml
