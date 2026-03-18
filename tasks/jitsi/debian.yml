@@ -6,6 +6,25 @@
       - debconf-utils # for jitsi configuration
     state: present
     update_cache: true
+- name: Add jitsi's apt repo
+  ansible.builtin.include_role:
+    name: hax0rbana_adam.apt_repo
+  vars:
+    apt_repo_url: https://download.jitsi.org
+    apt_repo_key_url: https://download.jitsi.org/jitsi-key.gpg.key
+    apt_repo_key_checksum: sha256:eb21b1cdcc04594be092ce2973e1989b145bacac4dff6e7eb6e847ad866c3f96
+    apt_repo_key_filename: jitsi-key.asc
+    apt_repo_codename: "stable/"
+    apt_repo_components: []
+    apt_repo_pinning:
+      origin: download.jitsi.org
+      packages:
+        - jicofo
+        - jitsi-meet
+        - jitsi-meet-prosody
+        - jitsi-meet-web
+        - jitsi-meet-web-config
+        - jitsi-videobridge
 - name: Add Jitsi Repository Signing Key
   ansible.builtin.apt_key:
     id: 66A9CD0595D6AFA247290D3BEF8B479E2DC1389C
