@@ -82,13 +82,13 @@ Create a playbook file:
 # jitsi.yml
 - hosts: jitsi
   roles:
-      - cimnine.jitsi_meet
+      - hax0rbana_adam.jitsi_meet
 ```
 
 Install the required dependencies:
 
 ```bash
-ansible-galaxy install cimnine.jitsi_meet
+ansible-galaxy install hax0rbana_adam.jitsi_meet
 ansible-galaxy install geerlingguy.certbot
 ```
 

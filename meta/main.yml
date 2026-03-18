@@ -1,10 +1,8 @@
 galaxy_info:
-  role_name: jitsi-meet
+  role_name: jitsi_meet
   description: Install jitsi-meet with nginx and (optionally) certbot
 
   author: cimnine
-
-  issue_tracker_url: https://github.com/cimnine/ansible-jitsi-meet-role/issues
 
   license: MIT
 
@@ -12,6 +10,9 @@ galaxy_info:
 
   # https://galaxy.ansible.com/api/v1/platforms/
   platforms:
+    - name: Debian
+      versions:
+        - trixie
     - name: Ubuntu
       versions:
         - bionic
@@ -20,6 +21,7 @@ galaxy_info:
     - jitsi
     - nginx
     - ubuntu
+    - debian
     - videochat
     - certbot
     - letsencrypt
