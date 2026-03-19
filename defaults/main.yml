@@ -24,14 +24,16 @@ jitsi_config:
     # jirecon: jirecon.{{ jitsi_domain }}
     # call_control: callcontrol.{{ jitsi_domain}}
     # focus: focus.{{ jitsi_domain }}
-  bosh: "//{{ jitsi_domain }}/http-bind"
+  bosh: "https://{{ jitsi_domain }}/http-bind"
+  websocket: "'wss://{{ jitsi_domain }}/xmpp-websocket'"
   clientNode: "http://jitsi.org/jitsimeet"
 
   testing:
-    enableFirefoxMulticast: false
+    enableFirefoxSimulcast: false
     p2pTestMode: false
     # testMode: false
     # noAutoPlayVideo: false
+
   # webrtcIceUdpDisable: false
   # webrtcIceTcpDisable: false
   # disableAudioLevels: false
@@ -71,8 +73,9 @@ jitsi_config:
   # fileRecordingsServiceSharingEnabled: false
 
   # liveStreamingEnabled: false
-  # transcribingEnabled: false
-  # autoCaptionOnRecord: false
+  # transcription:
+    # enabled: false
+    # autoTranscribeOnRecord: false
 
   channelLastN: -1
   # disableRtx: false
@@ -85,7 +88,8 @@ jitsi_config:
 
   # useNicks: false
   # requireDisplayName: true
-  enableWelcomePage: true
+  welcomePage:
+    disabled: false
   # enableClosePage: false
   # disable1On1Mode: false
   # defaultLanguage: 'en'
@@ -115,7 +119,8 @@ jitsi_config:
     preferH264: true
     # disableH264: false
     # backToP2PDelay: 5
-  analytics: {}
+  analytics:
+    disabled: true
     # googleAnalyticsTrackingId: 'your-tracking-id-UA-123456-1'
     # amplitudeAPPKey: '<APP_KEY>'
     # scriptURLs:
@@ -135,5 +140,5 @@ jitsi_config:
   # disableDeepLinking: false
   # disableLocalVideoFlip: false
   deploymentUrls: {}
-    # userDocumentationURL: 'https:#docs.example.com/video-meetings.html'
-    # downloadAppsUrl: 'https:#docs.example.com/our-apps.html'
+    # userDocumentationURL: 'https://docs.example.com/video-meetings.html'
+    # downloadAppsUrl: 'https://docs.example.com/our-apps.html'
