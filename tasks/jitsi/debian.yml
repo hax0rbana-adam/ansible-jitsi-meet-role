@@ -17,6 +17,7 @@
     apt_repo_codename: "stable/"
     apt_repo_components: []
     apt_repo_pinning:
+      filename: jitsi
       origin: download.jitsi.org
       packages:
         - jicofo
