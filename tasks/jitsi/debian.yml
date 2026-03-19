@@ -27,17 +27,6 @@
         - jitsi-meet-web-config
         - jitsi-videobridge
         - jitsi-videobridge2
-- name: Add Jitsi Repository Signing Key
-  ansible.builtin.apt_key:
-    id: 66A9CD0595D6AFA247290D3BEF8B479E2DC1389C
-    url: https://download.jitsi.org/jitsi-key.gpg.key
-    state: present
-- name: Add Jitsi Repository
-  ansible.builtin.apt_repository:
-    repo: deb https://download.jitsi.org stable/
-    state: present
-    filename: jitsi
-    update_cache: true
 
 - name: Get public IP
   when: jitsi_nat|bool
