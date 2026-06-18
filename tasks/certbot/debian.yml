@@ -5,13 +5,21 @@
     mode: "644"
   notify:
     - Restart nginx
-- name: Ensure server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }}
-  when: nginx_modify_server_names_hash_bucket_size|bool
-  ansible.builtin.lineinfile:
-    line: \1server_names_hash_bucket_size {{ nginx_server_names_hash_bucket_size }};
-    regexp: (\s*)#?\s*server_names_hash_bucket_size \d+;
-    path: /etc/nginx/nginx.conf
-    validate: nginx -t -c %s
-    backrefs: true
+
+- name: Ensuring our nginx configuration is enabled
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/{{ jitsi_domain }}.conf
+    dest: /etc/nginx/sites-enabled/{{ jitsi_domain }}.conf
+    owner: root
+    group: root
+    mode: 644
+    state: link
+  notify:
+    - Restart nginx
+
+- name: Ensuring our the old nginx configuration is disabled
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/localhost.conf
+    state: absent
   notify:
     - Restart nginx

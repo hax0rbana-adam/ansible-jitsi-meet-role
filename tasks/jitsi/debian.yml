@@ -38,7 +38,7 @@
 - name: Pre-configure jitsi-videobridge package
   ansible.builtin.debconf:
     name: "{{ jitsi_videobridge_package_name }}"
-    question: jitsi-videobridge2/jvb-hostname
+    question: "{{ jitsi_videobridge_package_name }}/jvb-hostname"
     value: "{{ jitsi_domain }}"
     vtype: string
 - name: Install jitsi-videobridge
@@ -54,7 +54,7 @@
 
 - name: Check if the jitsi-videobridge service is active
   command: systemctl is-active jitsi-videobridge
-  register: jitsi-videobridge
+  register: jitsi_videobridge
   ignore_errors: true
 - name: Restart jitsi-videobridge
   when: jitsi_videobridge_sip_communicator.changed and jitsi_videobridge.rc == 0 # noqa no-handler
@@ -64,7 +64,7 @@
 
 - name: Check if the jitsi-videobridge2 service is active
   command: systemctl is-active jitsi-videobridge2
-  register: jitsi-videobridge2
+  register: jitsi_videobridge2
   ignore_errors: true
 - name: Restart jitsi-videobridge2
   when: jitsi_videobridge_sip_communicator.changed and jitsi_videobridge2.rc == 0 # noqa no-handler
@@ -91,6 +91,13 @@
   ansible.builtin.apt:
     name: jitsi-meet-web-config
     state: present
+
+- name: Pre-configure jitsi-meet-prosody package
+  ansible.builtin.debconf:
+    name: jitsi-meet-prosody
+    question: jitsi-videobridge/jvb-hostname
+    value: "{{ jitsi_domain }}"
+    vtype: string
 - name: Install jitsi-meet-prosody
   ansible.builtin.apt:
     name: jitsi-meet-prosody

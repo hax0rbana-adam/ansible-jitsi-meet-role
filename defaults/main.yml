@@ -12,7 +12,7 @@ nginx_server_names_hash_bucket_size: 64
 # variables as provided below under `jitsi_config`.
 managed_jitsi_config: false
 
-jitsi_videobridge_package_name: videobridge2
+jitsi_videobridge_package_name: jitsi-videobridge2
 
 # Refer to the online config file for documentation on how to set
 # the variables, what they can contain and what they do.
